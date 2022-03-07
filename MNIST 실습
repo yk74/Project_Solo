@@ -1,0 +1,50 @@
+import tensorflow as tf
+from tensorflow.keras.datasets.fashion_mnist import load_data
+
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras import models
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.utils import plot_model
+
+from sklearn.model_selection import train_test_split
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+tf.random.set_seed(111)
+
+(x_train_full, y_train_full), (x_test, y_test) = load_data()
+
+x_train, x_val, y_train, y_val = train_test_split(x_train_full, y_train_full, test_size=0.3, random_state=111)
+
+
+print("학습전체 데이터: {}\t레이블: {}".format(x_train_full.shape, y_train_full.shape))
+print("학습 데이터: {}\t레이블: {}".format(x_train.shape, y_train.shape))
+print("검증 데이터: {}\t레이블: {}".format(x_val.shape, y_val.shape))
+print("테스트 데이터: {}\t레이블: {}".format(x_test.shape, y_test.shape))
+
+
+class_names = ['T-shirts/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+print(class_names[y_train[0]])
+plt.imshow(x_train[0])
+
+
+num_sample = 4
+
+random_idxs = np.random.randint(60000, size = num_sample)
+
+plt.figure(figsize = (15, 10))
+for i, idx in enumerate(random_idxs):
+   image = x_train_full[idx, :]
+   label = y_train_full[idx]
+
+   plt.subplot(1, len(random_idxs), i+1)
+   plt.imshow(image)
+   plt.title("Index: {}, Label: {}".format(idx, class_names[label]))
+   
+   
+x_train = (x_train.reshape(-1, 28*28)) / 255.
+x_val = (x_val.reshape(-1, 28*28)) / 255.
+x_test = (x_test.reshape(-1, 28*28)) / 255.
