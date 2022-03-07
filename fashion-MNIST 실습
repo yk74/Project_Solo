@@ -48,3 +48,12 @@ for i, idx in enumerate(random_idxs):
 x_train = (x_train.reshape(-1, 28*28)) / 255.
 x_val = (x_val.reshape(-1, 28*28)) / 255.
 x_test = (x_test.reshape(-1, 28*28)) / 255.
+
+
+input = Input(shape = (784, ), name = 'input')
+hidden1 = Dense(256, activation = 'relu', name ='hidden1')(input)
+hidden2 = Dense(128, activation = 'relu', name ='hidden2')(hidden1)
+hidden3 = Dense(64, activation = 'relu', name ='hidden3')(hidden2)
+hidden4 = Dense(32, activation = 'relu', name ='hidden4')(hidden3)
+output = Dense(10, activation = 'softmax', name ='output')(hidden4)
+model = Model(inputs = [input], outputs = output)
