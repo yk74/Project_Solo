@@ -13,3 +13,29 @@ lst_phone = []
 for i in range(len(data)):
   lst_phone.append("010"+str(randint(10000001, 99999999)))
 data["Phone Number"] = lst_phone
+
+Counter(data['교육기간'])
+
+data.columns=['연령','직군','교육기간','혼인 여부','직업','가족 관계','인종','성별','소득','손실','주 근로시간','국적','휴대폰 번호']
+data
+
+# 범주형과 연속형 변수 구분
+cate_cols =     []
+cont_cols =     []
+not_sure_cols = []
+
+for col in data.columns:
+    size_of_state_space = len(data[col].unique()) # 상태공간 크기 정의
+    col_type = data[col].dtype # 컬럼의 데이터 타입 확인
+    
+    if size_of_state_space > 10 and col_type in [int, float, 'int64', 'int32', 'int8','float32', 'float64', 'float16']: # 상태공간의 크기가 10 초과이고, 데이터 타입이 int나 float
+        cont_cols.append(col)
+    elif size_of_state_space < 10 and col_type in [object]: # 상태공간의 크기가 10 미만이고, 데이터타입이 object
+        cate_cols.append(col)   
+    elif col_type in ['category']: # 데이터타입이 category
+        cate_cols.append(col)        
+    else: # 위의 두 조건을 만족못하면 더 확인해보기!
+        not_sure_cols.append(col)    
+print("연속형 ", cont_cols)        
+print("범주형 ", cate_cols)        
+print("판단보류 ", not_sure_cols) 
