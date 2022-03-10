@@ -1,0 +1,15 @@
+!pip install shap
+
+## 테스트 데이터 생성
+import numpy as np
+import pandas as pd
+import shap
+from random import *
+
+data, labels = shap.datasets.adult(display=True)
+labels = np.array([int(label) for label in labels])
+
+lst_phone = []
+for i in range(len(data)):
+  lst_phone.append("010"+str(randint(10000001, 99999999)))
+data["Phone Number"] = lst_phone
