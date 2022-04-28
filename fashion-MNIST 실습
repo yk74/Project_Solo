@@ -18,7 +18,6 @@ tf.random.set_seed(111)
 
 x_train, x_val, y_train, y_val = train_test_split(x_train_full, y_train_full, test_size=0.3, random_state=111)
 
-
 print("학습전체 데이터: {}\t레이블: {}".format(x_train_full.shape, y_train_full.shape))
 print("학습 데이터: {}\t레이블: {}".format(x_train.shape, y_train.shape))
 print("검증 데이터: {}\t레이블: {}".format(x_val.shape, y_val.shape))
