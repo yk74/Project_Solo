@@ -29,7 +29,6 @@ class_names = ['T-shirts/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal',
 print(class_names[y_train[0]])
 plt.imshow(x_train[0])
 
-
 num_sample = 4
 
 random_idxs = np.random.randint(60000, size = num_sample)
