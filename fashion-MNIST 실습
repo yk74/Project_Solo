@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.datasets.fashion_mnist import load_data
 
+
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras import models
 from tensorflow.keras.layers import Dense, Input
